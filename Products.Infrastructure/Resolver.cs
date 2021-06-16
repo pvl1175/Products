@@ -10,19 +10,17 @@ namespace Products.Infrastructure
     {
         public static (string, AttributeType) ResolveAndSerialize(AbstractAttribute attribute)
         {
-            return attribute.Serialize();
-
-            if (attribute is SimpleAttribute<int> sa)
-                return (JsonSerializer.Serialize<SimpleAttribute<int>>(sa), AttributeType.SimpleInt);
+            if (attribute is SimpleAttribute<int>)
+                return (attribute.Serialize(), AttributeType.SimpleInt);
 
             if (attribute is SimpleCurrencyAttribute<decimal> sc)
-                return (JsonSerializer.Serialize<SimpleCurrencyAttribute<decimal>>(sc), AttributeType.SimpleCurrencyDecimal);
+                return (attribute.Serialize(), AttributeType.SimpleCurrencyDecimal);
 
             if (attribute is SimpleMeasurableAttribute<decimal> sm)
-                return (JsonSerializer.Serialize<SimpleMeasurableAttribute<decimal>>(sm), AttributeType.SimpleMeasurableDouble);
+                return (attribute.Serialize(), AttributeType.SimpleMeasurableDouble);
 
             if (attribute is CompoundAttribute ca)
-                return (JsonSerializer.Serialize<CompoundAttribute>(ca), AttributeType.Compound);
+                return (attribute.Serialize(), AttributeType.Compound);
 
             throw new ArgumentException(nameof(attribute));
         }
