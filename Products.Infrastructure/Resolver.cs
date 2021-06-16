@@ -13,13 +13,13 @@ namespace Products.Infrastructure
             if (attribute is SimpleAttribute<int>)
                 return (attribute.Serialize(), AttributeType.SimpleInt);
 
-            if (attribute is SimpleCurrencyAttribute<decimal> sc)
+            if (attribute is SimpleCurrencyAttribute<decimal>)
                 return (attribute.Serialize(), AttributeType.SimpleCurrencyDecimal);
 
-            if (attribute is SimpleMeasurableAttribute<decimal> sm)
+            if (attribute is SimpleMeasurableAttribute<decimal>)
                 return (attribute.Serialize(), AttributeType.SimpleMeasurableDouble);
 
-            if (attribute is CompoundAttribute ca)
+            if (attribute is CompoundAttribute)
                 return (attribute.Serialize(), AttributeType.Compound);
 
             throw new ArgumentException(nameof(attribute));
