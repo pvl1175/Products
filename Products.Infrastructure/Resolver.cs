@@ -1,6 +1,7 @@
 ﻿using Products.DataLayer;
 using Products.Domain;
 using System;
+using System.Collections.Generic;
 using System.Text.Json;
 
 namespace Products.Infrastructure
@@ -9,6 +10,8 @@ namespace Products.Infrastructure
     {
         public static (string, AttributeType) ResolveAndSerialize(AbstractAttribute attribute)
         {
+            return attribute.Serialize();
+
             if (attribute is SimpleAttribute<int> sa)
                 return (JsonSerializer.Serialize<SimpleAttribute<int>>(sa), AttributeType.SimpleInt);
 

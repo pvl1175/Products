@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json;
 
 namespace Products.Domain
 {
@@ -14,5 +15,10 @@ namespace Products.Domain
     public class SimpleMeasurableAttribute<TValue> : UserAttribute<TValue>
     {
         public UnitOfMeasurement Unit { get; set; }
+
+        public override string Serialize()
+        {
+            return JsonSerializer.Serialize(this);
+        }
     }
 }

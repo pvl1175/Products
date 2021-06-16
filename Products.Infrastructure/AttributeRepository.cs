@@ -24,6 +24,11 @@ namespace Products.Infrastructure
             if (attribute.Id != 0)
                 throw new ArgumentException(nameof(attribute));
 
+            Type t0 = attribute.GetType();
+            Type t1 = typeof(SimpleAttribute<int>);
+
+            var b = t0.Equals(t1);
+
             ProductEntity productEntity = await context.Products.SingleOrDefaultAsync(x => x.Id == product.Id);
 
             (string json, AttributeType attr) resolveData = Resolver.ResolveAndSerialize(attribute);
